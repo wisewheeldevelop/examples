@@ -244,7 +244,45 @@ body {
   overflow: hidden;
   background: #000;
 }
-.frame > * { display: block; width: 100%; height: 100%; }
+.frame > :not(.frame__toggle) { display: block; width: 100%; height: 100%; }
+
+/* --- touch: let the page scroll -------------------------------------------
+   Each renderer traps touch (touch-action:none on the decks' stage and the
+   bookshelf canvas, overscroll-behavior:contain in the hero page). Stacked as
+   full-height sections that leaves a phone with nowhere to begin a scroll, so
+   on coarse pointers the contents are inert until explicitly activated. */
+.frame__toggle {
+  display: none;
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 3;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ground);
+  background: var(--gold);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  pointer-events: auto;
+}
+@media (pointer: coarse) {
+  /* !important because the landing-page renderer sets pointer-events inline,
+     and an inline style outranks any selector we can write. */
+  .frame > :not(.frame__toggle) { pointer-events: none !important; }
+  .frame--live > :not(.frame__toggle) { pointer-events: auto !important; }
+  .frame__toggle { display: inline-flex; }
+  /* While a frame is live it owns the gesture, so give the page a way out. */
+  .frame--live { outline: 1px solid var(--gold); outline-offset: -1px; }
+}
+
+
 
 /* svh keeps the mobile URL bar from making a 100vh frame taller than the screen. */
 .frame--hero { height: 100vh; height: 100svh; }
