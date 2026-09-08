@@ -97,6 +97,15 @@ body {
 
 @media (max-width: 720px) {
   .nav__links { display: none; }
+
+  /* Touch targets: the desktop pills are ~30px tall, below the 44px minimum. */
+  .nav__cta,
+  .switch button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+  }
 }
 
 /* ---------- sections ---------- */
