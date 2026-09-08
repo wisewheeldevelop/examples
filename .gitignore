@@ -1,0 +1,36 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+dist-ssr
+*.local
+
+# Generated assets — rebuilt from node_modules by `npm run assets`,
+# which runs automatically via predev/prebuild. Never commit these:
+# they are ~4 MB of derived copies of the upstream package's documents.
+public/naor
+public/landing-pages
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Tooling scratch
+.playwright-mcp
+*.png
+
+# Editor and OS
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
